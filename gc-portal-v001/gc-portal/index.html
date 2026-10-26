@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GC Portal — Open Extragalactic Globular Cluster Catalogue</title>
+  <meta name="description" content="A spectroscopically confirmed catalogue of extragalactic globular clusters built as a training set for LSST photometric classification.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ══════════════════════════════════
+       SIDEBAR
+  ═══════════════════════════════════════ -->
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo">GC</div>
+      <div class="brand-text">
+        <span class="brand-name">GC Portal</span>
+        <span class="brand-sub">Extragalactic Globular Clusters</span>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-sec-label">Catalogue</span>
+      <a href="catalogue.html" class="nav-item active">
+        <span class="dot dot-red"></span> All globular clusters
+      </a>
+      <a href="catalogue.html?filter=host" class="nav-item">
+        <span class="dot dot-blue"></span> Host galaxies
+      </a>
+      <a href="catalogue.html?filter=confirmed" class="nav-item">
+        <span class="dot dot-orange"></span> Confirmed clusters
+      </a>
+      <a href="catalogue.html?filter=candidate" class="nav-item">
+        <span class="dot dot-gray"></span> Candidate clusters
+      </a>
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-sec-label">Spectra</span>
+      <a href="#" class="nav-item">
+        <span class="dot dot-blue"></span> MUSE extractions
+      </a>
+      <a href="#" class="nav-item">
+        <span class="dot dot-green"></span> Archival (VLT/Gemini)
+      </a>
+      <a href="#" class="nav-item">
+        <span class="dot dot-purple"></span> Literature spectra
+      </a>
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-sec-label">Plots</span>
+      <a href="#" class="nav-item">Color distributions</a>
+      <a href="#" class="nav-item">Luminosity functions</a>
+      <a href="#" class="nav-item">Spatial maps</a>
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-sec-label">Other</span>
+      <a href="#" class="nav-item">API access</a>
+      <a href="#" class="nav-item">Documentation</a>
+    </div>
+
+    <div class="sidebar-footer">
+      v0.01 · <a href="https://eat.ufrgs.br" target="_blank">EAT Group</a> ·
+      <a href="https://linea.org.br" target="_blank">LIneA</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════ -->
+  <main class="main">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-eyebrow">Open Science &nbsp;·&nbsp; Star Clusters Community</div>
+      <h1>Open Extragalactic Globular Cluster Portal</h1>
+      <p class="hero-desc">
+        A spectroscopically confirmed catalogue of extragalactic GCs —
+        built as a training set for LSST photometric classification.
+        Hosted jointly by the EAT group (UFRGS) and LIneA.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-pill">
+          <span class="num">18,426</span>
+          <span class="lbl">confirmed GCs</span>
+        </div>
+        <div class="stat-pill">
+          <span class="num">612</span>
+          <span class="lbl">host galaxies</span>
+        </div>
+        <div class="stat-pill">
+          <span class="num">5,907</span>
+          <span class="lbl">spectra</span>
+        </div>
+        <div class="stat-pill tag">
+          <span class="tag-key">LSST-ready</span>
+          <span class="tag-val">training set</span>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#" class="btn btn-primary">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 2v8M4 7l4 4 4-4"/><path d="M2 13h12"/>
+          </svg>
+          Download catalogue
+        </a>
+        <a href="catalogue.html" class="btn btn-secondary">
+          Browse data
+        </a>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- Quick stats grid -->
+      <div class="info-grid">
+        <div class="info-cell">
+          <div class="info-cell-label">Confirmed GCs</div>
+          <div class="info-cell-value">18,426</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Host galaxies</div>
+          <div class="info-cell-value">612</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Spectra</div>
+          <div class="info-cell-value">5,907</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Photometric filters</div>
+          <div class="info-cell-value small">u, g, r, i, z (SDSS/LSST)<br>F814W, F606W (HST)</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Sky coverage</div>
+          <div class="info-cell-value small">Southern sky (Phase I)<br>Northern sky (Phase II)</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-cell-label">Last updated</div>
+          <div class="info-cell-value small">24 Jun 2026</div>
+        </div>
+      </div>
+
+      <!-- Statistics table -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="panel-icon">
+              <!-- bar chart icon -->
+              <svg viewBox="0 0 14 14" fill="currentColor">
+                <rect x="1" y="6" width="3" height="7" rx="0.5"/>
+                <rect x="5.5" y="3" width="3" height="10" rx="0.5"/>
+                <rect x="10" y="1" width="3" height="12" rx="0.5"/>
+              </svg>
+            </span>
+            Statistics
+          </div>
+          <span class="badge-updated">Updated Jun 24 2026</span>
+        </div>
+        <table class="stats-table">
+          <tbody>
+            <tr><td>Confirmed globular clusters</td><td>18,426</td></tr>
+            <tr><td class="indent">— Spectroscopically confirmed (published)</td><td>14,201</td></tr>
+            <tr><td class="indent">— Spectroscopically confirmed (this work)</td><td>4,225</td></tr>
+            <tr><td>Candidate GCs (photometric/morphological)</td><td>23,114</td></tr>
+            <tr><td class="indent">— Space-based (HST)</td><td>18,830</td></tr>
+            <tr><td class="indent">— Space-based (JWST)</td><td>4,284</td></tr>
+            <tr><td>Total catalogued objects</td><td>41,540</td></tr>
+            <tr><td>Host galaxies</td><td>612</td></tr>
+            <tr><td class="indent">— Elliptical / S0 (E/S0)</td><td>438</td></tr>
+            <tr><td class="indent">— Spiral (S / Irr)</td><td>174</td></tr>
+            <tr><td>Spectroscopic measurements (spectra)</td><td>5,907</td></tr>
+            <tr><td class="indent">— VLT/MUSE</td><td>2,844</td></tr>
+            <tr><td class="indent">— Archival (VLT/FORS2, Gemini/GMOS, Keck…)</td><td>3,063</td></tr>
+            <tr><td>Metallicity estimates [Fe/H]</td><td>4,982</td></tr>
+            <tr><td>Sky coverage — Southern sky (Phase I)</td><td>completed</td></tr>
+            <tr><td>Sky coverage — Northern sky (Phase II)</td><td>in progress</td></tr>
+            <tr><td>Contributors</td>
+                <td style="text-align:right;font-weight:400;font-style:italic;color:var(--text-secondary);font-size:12.5px">
+                  Niranjana P., A. Chies-Santos, R. S. de Souza,<br>
+                  J. Gschwend, N. Schweder-Souza<br>
+                  + LSST Star Clusters community
+                </td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- About panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="panel-icon">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round">
+                <circle cx="7" cy="7" r="6"/>
+                <line x1="7" y1="6.5" x2="7" y2="10.5"/>
+                <circle cx="7" cy="4.5" r="0.6" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            About this portal
+          </div>
+        </div>
+        <div style="padding:18px 20px;font-size:13.5px;line-height:1.75;color:var(--text-secondary);max-width:780px">
+          <p style="margin-bottom:10px">
+            The <strong style="color:var(--text-primary)">Open Extragalactic Globular Cluster Portal</strong>
+            is a community resource that compiles spectroscopically confirmed extragalactic globular clusters
+            (GCs) alongside space-based photometric candidates from HST and JWST imaging. The primary goal
+            is to provide a clean, LSST-ready training set for photometric classification of GC candidates
+            in the upcoming Rubin Observatory Legacy Survey of Space and Time.
+          </p>
+          <p style="margin-bottom:10px">
+            Objects are classified as <em>confirmed</em> when a radial velocity and/or spectral index
+            measurement places them kinematically or chemically consistent with GC membership of the
+            host galaxy. <em>Candidates</em> are selected on morphological and colour grounds from
+            high-resolution space imaging and have not yet received a spectroscopic follow-up.
+          </p>
+          <p>
+            Photometry is provided in the SDSS / LSST filter system (u, g, r, i, z) where available,
+            supplemented by HST passbands (F606W, F814W, F475W). Magnitudes are on the AB system.
+            Coordinates are J2000.0 (ICRS).
+          </p>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+
+    <!-- Citation box -->
+    <div class="cite-box">
+      <strong>If you use this catalogue, please cite:</strong><br>
+      Prashantha N. et al. (2026), <em>The Open Extragalactic GC Portal</em>, A&amp;A (submitted) ·
+      <code>arXiv:2026.XXXXX</code> ·
+      <a href="#" style="color:#a07818">DOI: 10.xxxx/xxxxxxx</a>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

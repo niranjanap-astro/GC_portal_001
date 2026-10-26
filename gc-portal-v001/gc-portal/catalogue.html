@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue — GC Portal</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ══════════════════════════════════
+       SIDEBAR
+  ═══════════════════════════════════════ -->
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo">GC</div>
+      <div class="brand-text">
+        <span class="brand-name">GC Portal</span>
+        <span class="brand-sub">Extragalactic Globular Clusters</span>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-sec-label">Catalogue</span>
+      <a href="catalogue.html" class="nav-item active">
+        <span class="dot dot-red"></span> All globular clusters
+      </a>
+      <a href="catalogue.html?filter=host" class="nav-item">
+        <span class="dot dot-blue"></span> Host galaxies
+      </a>
+      <a href="catalogue.html?filter=confirmed" class="nav-item">
+        <span class="dot dot-orange"></span> Confirmed clusters
+      </a>
+      <a href="catalogue.html?filter=candidate" class="nav-item">
+        <span class="dot dot-gray"></span> Candidate clusters
+      </a>
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-sec-label">Spectra</span>
+      <a href="#" class="nav-item">
+        <span class="dot dot-blue"></span> MUSE extractions
+      </a>
+      <a href="#" class="nav-item">
+        <span class="dot dot-green"></span> Archival (VLT/Gemini)
+      </a>
+      <a href="#" class="nav-item">
+        <span class="dot dot-purple"></span> Literature spectra
+      </a>
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-sec-label">Plots</span>
+      <a href="#" class="nav-item">Color distributions</a>
+      <a href="#" class="nav-item">Luminosity functions</a>
+      <a href="#" class="nav-item">Spatial maps</a>
+    </div>
+
+    <div class="nav-section">
+      <span class="nav-sec-label">Other</span>
+      <a href="#" class="nav-item">API access</a>
+      <a href="#" class="nav-item">Documentation</a>
+    </div>
+
+    <div class="sidebar-footer">
+      v0.01 · <a href="https://eat.ufrgs.br" target="_blank">EAT Group</a> ·
+      <a href="https://linea.org.br" target="_blank">LIneA</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════ -->
+  <main class="main">
+
+    <!-- Page header -->
+    <div class="page-header">
+      <div class="page-header-row">
+        <div>
+          <h2>All globular clusters</h2>
+          <p>Spectroscopically confirmed GCs and space-based candidates from the full catalogue.</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-shrink:0;margin-top:4px">
+          <a href="index.html" class="btn btn-outline btn-sm">← Home</a>
+          <button class="btn btn-outline btn-sm" id="btn-download">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v8M4 7l4 4 4-4"/><path d="M2 13h12"/>
+            </svg>
+            Download CSV
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <input type="text" id="q-search" placeholder="Search by galaxy, ID, instrument…">
+
+      <div class="filter-sep"></div>
+
+      <span class="filter-label">Type</span>
+      <select id="f-type">
+        <option value="">All types</option>
+        <option value="confirmed">Confirmed GC</option>
+        <option value="candidate">Candidate GC</option>
+      </select>
+
+      <span class="filter-label">Method</span>
+      <select id="f-method">
+        <option value="">All methods</option>
+        <option value="spectroscopic">Spectroscopic</option>
+        <option value="HST">HST imaging</option>
+        <option value="JWST">JWST imaging</option>
+      </select>
+
+      <span class="filter-label">Host galaxy</span>
+      <select id="f-host">
+        <option value="">All hosts</option>
+        <!-- populated by JS -->
+      </select>
+
+      <span class="results-count" id="results-count"></span>
+    </div>
+
+    <!-- Data table -->
+    <div class="table-panel">
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-col="id">GC ID</th>
+              <th data-col="host">Host Galaxy</th>
+              <th data-col="ra">RA (J2000)</th>
+              <th data-col="dec">Dec (J2000)</th>
+              <th data-col="type">Class</th>
+              <th data-col="method">Method</th>
+              <th data-col="g" style="text-align:right">g</th>
+              <th data-col="r" style="text-align:right">r</th>
+              <th data-col="i" style="text-align:right">i</th>
+              <th data-col="gi" style="text-align:right">g−i</th>
+              <th data-col="feh" style="text-align:right">[Fe/H]</th>
+              <th data-col="vr" style="text-align:right">v<sub>r</sub> (km/s)</th>
+              <th data-col="instr">Instrument</th>
+              <th data-col="ref">Reference</th>
+            </tr>
+          </thead>
+          <tbody id="gc-tbody">
+            <tr><td colspan="14" style="padding:32px;text-align:center;color:var(--text-muted)">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <div class="page-info" id="page-info"></div>
+        <div class="page-btns" id="page-btns"></div>
+      </div>
+    </div>
+
+    <!-- Column legend -->
+    <div style="margin:12px 48px 0;font-size:11.5px;color:var(--text-muted);line-height:1.8">
+      <strong style="color:var(--text-secondary)">Column notes:</strong>
+      Magnitudes in AB system (SDSS/LSST filter set).
+      g−i is the g−i colour index (blue GCs: g−i ≲ 0.90; red GCs: g−i ≳ 0.95).
+      [Fe/H] in dex from Lick indices or full spectral fitting.
+      v<sub>r</sub>: heliocentric radial velocity in km/s. — = not measured.
+      Click any column header to sort.
+    </div>
+
+    <!-- Citation -->
+    <div class="cite-box">
+      <strong>If you use this catalogue, please cite:</strong><br>
+      Prashantha N. et al. (2026), <em>The Open Extragalactic GC Portal</em>, A&amp;A (submitted) ·
+      <code>arXiv:2026.XXXXX</code> ·
+      <a href="#" style="color:#a07818">DOI: 10.xxxx/xxxxxxx</a>
+    </div>
+
+  </main>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
